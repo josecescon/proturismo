@@ -4,7 +4,7 @@ $erro = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $senha = $_POST['senha'];
 
     $sql = "SELECT * FROM usuarios WHERE email = '$email'";
     $result = $conn->query($sql);
