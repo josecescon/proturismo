@@ -12,7 +12,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     if ($result->num_rows === 1) {
         $usuario = $result->fetch_assoc();
 
-        if ($senha === $usuario['senha']) {
+        if (password_verify($senha, $usuario['senha'])) {
             $_SESSION['usuario'] = $usuario['email'];
 
             header("Location: painel.php");
