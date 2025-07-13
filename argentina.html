@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="argentina.css">
+    <script src="argentina.js"></script>
     <title>Proturismo</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
                 <h1 class="logo">PROTURISMO</h1>
             <nav class="nav">
                 <ul>
-                    <li><a href="destinos.html">Destinos</a></li>
+                    <li><a href="#">Destinos</a></li>
                     <li><a href="#">Experiências</a></li>
                     <li><a href="#">Contato</a></li>
                     <li><a href="brasil.php">Brasil</a></li>
@@ -30,19 +31,10 @@
             <input 
                 type="text" 
                 id="searchInput" 
-                placeholder="Pesquisar por passeios..."/>
+                placeholder="Pesquisar por passeios..."
+                onkeyup="search()"/>
         </div>
     </section>
-    
-    <section class="sla">
-        <div class="proturismo">
-            <img src="https://100fronteiras.com/wp-content/uploads/2023/09/casino-galeria-1-1024x576.jpg" alt="Imagem de turismo" class="img-turismo">
-            <span class="destination-title">City Center</span>
-        </div>
-    </section>
-    
-    
-
     </section>     
     <main>
         <section class="destination-grid">
