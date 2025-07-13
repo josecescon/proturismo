@@ -20,7 +20,7 @@ if (!isset($_SESSION['usuario'])) {
             <h1 class="logo">PROTURISMO</h1>
             <nav class="nav">
                 <ul>
-                    <li><a href="#">Destinos</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
                     <li><a href="#">Experiências</a></li>
                     <li><a href="#">Contato</a></li>
                     <li><a href="argentina.html">Argentina</a></li>
