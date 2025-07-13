@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proturismo</title>
+    <link rel="stylesheet" href="brasil.css">
+    <script src="brasil.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PROTURISMO</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#">Destinos</a></li>
+                    <li><a href="#">Experiências</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="argentina.html">Argentina</a></li>
+                    <li><a href="paraguai.html">Paraguai</a></li>
+                </ul>
+            </nav>
+            <div class="cta">
+                <a href="login.html" class="btn">Login</a>
+                <a href="cadastro.php" class="btn">Cadastro</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <div class="search-containe">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Pesquisar por passeios..."
+                onkeyup="search()"/>
+        </div>
+    </section>
+    <main>
+        <section class="destination-grid">
+            <div class="destination" style="background-image: url('https://www.viagensecaminhos.com/wp-content/uploads/2010/08/foz-do-iguacu-cataratas-do-iguacu.jpg');">
+                <span class="destination-title">Cataratas do Iguaçu</span>
+            </div>
+            <div class="destination" style="background-image: url('https://www.iguassu.com.br/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-06-at-16.16.28.jpeg');">
+                <span class="destination-title">Parque das Aves</span>
+            </div>
+            <div class="destination" style="background-image: url('https://www.h2foz.com.br/wp-content/uploads/2020/10/bfb1d31a-1578594718-capa.jpg');">
+                <span class="destination-title">Marco das Três Fronteiras</span>
+            </div>
+            <div class="destination" style="background-image: url('https://www.hoteldelreyfoz.com.br/wp-content/uploads/2020/09/usina-de-itaipu-binacional-1024x576.jpeg');">
+                <span class="destination-title">Usina de Itaipu</span>
+            </div>
+            <div class="destination" style="background-image: url('https://a.travel-assets.com/findyours-php/viewfinder/images/res70/71000/71069-Foz-Do-Iguacu.jpg');">
+                <span class="destination-title">Templo Budista</span>
+            </div>
+            <div class="destination" style="background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/30/9c/d5/fachada-do-museu-de-cera.jpg?w=1200&h=-1&s=1');">
+                <span class="destination-title">Dreamland Museu de Cera</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Sobre Nós</h3>
+                <p>Oferecemos os melhores passeios e experiências em Foz do Iguaçu. Explore e se surpreenda com a nossa cidade!</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contatos</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +55 (45)</li>
+                    <li><i class="fas fa-envelope"></i> Proturismo@gmail.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Siga-nos</h3>
+                <div class="social-icons">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Proturismo. Todos os direitos reservados.</p>
+        </div>
+    </footer>    
+</body>
+</html>

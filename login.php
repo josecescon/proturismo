@@ -2,30 +2,28 @@
 session_start();
 include 'conexao.php';
 
-if (isset($_POST['email']) && isset($_POST['senha'])) {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+$email = $_POST['email'];
+$senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM usuarios WHERE email = '$email'";
-    $result = $conn->query($sql);
+$stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if ($result->num_rows === 1) {
-        $usuario = $result->fetch_assoc();
-
-        if (password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario'] = $usuario['email'];
-
-            header("Location: painel.php");
-            exit;
-        } else {
-            echo "Senha incorreta.";
-        }
+if ($result->num_rows === 1) {
+    $usuario = $result->fetch_assoc();
+    if (password_verify($senha, $usuario['senha'])) {
+        session_regenerate_id(true);
+        $_SESSION['usuario'] = $usuario['email'];
+        header("Location: painel.php");
+        exit;
     } else {
-        echo "Usuário não encontrado.";
+        echo "Senha incorreta.";
     }
-
-    $conn->close();
 } else {
-    echo "Preencha todos os campos.";
+    echo "Email não encontrado.";
 }
+
+$stmt->close();
+$conn->close();
 ?>

@@ -1,25 +1,32 @@
 <?php
 include 'conexao.php';
-$erro = false;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email']) && isset($_POST['senha'])) {
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $sql = "SELECT * FROM usuarios WHERE email = '$email'";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    if ($result->num_rows > 0) {
-        $erro = true;
-    } else {
-        $sql = "INSERT INTO usuarios (email, senha) VALUES ('$email', '$senha')";
-        if ($conn->query($sql)) {
-            header("Location: login.html");
-            exit;
-        } else {
-            echo "Erro ao cadastrar: " . $conn->error;
-        }
+    if ($stmt->num_rows > 0) {
+        header("Location: cadastro.php?erro=email");
+        exit;
     }
+    $stmt->close();
+
+    $stmt = $conn->prepare("INSERT INTO usuarios (email, senha) VALUES (?, ?)");
+    $stmt->bind_param("ss", $email, $senha);
+
+    if ($stmt->execute()) {
+        header("Location: login.html");
+        exit;
+    } else {
+        echo "Erro ao cadastrar.";
+    }
+
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -37,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h1 class="logo">PROTURISMO</h1>
             <nav class="nav">
                 <ul>
-                    <li><a href="#">Destinos</a></li>
+                    <li><a href="destinos.html">Destinos</a></li>
                     <li><a href="#">Experiências</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
@@ -50,19 +57,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <main>
         <h1>Cadastre-se</h1>
-
-        <?php if ($erro): ?>
+        <?php if (isset($_GET['erro']) && $_GET['erro'] === 'email'): ?>
             <p style="color: red; font-weight: bold;">Este e-mail já está cadastrado.</p>
         <?php endif; ?>
-
-        <form action="cadastro.php" method="POST" style="margin-top: 30px;">
+        <form action="cadastro.php" method="POST">
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required placeholder="Digite seu email"><br><br>
-
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required><br><br>
             <label for="senha">Senha:</label><br>
-            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha"><br><br>
-
-            <button type="submit" class="btn">Cadastrar-se</button>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required><br><br>
+            <button type="submit" class="btn">Cadastrar</button>
         </form>
     </main>
 
